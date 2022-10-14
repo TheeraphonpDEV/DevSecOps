@@ -1,16 +1,17 @@
-# kubernetes-devops-security
+## DevSecOps
 
-## Fork and Clone this Repo
+jenkins URL
 
-## Clone to Desktop and VM
+http://devsecops-pro.eastus.cloudapp.azure.com/8080
+
 
 ## NodeJS Microservice - Docker Image -
-`docker run -p 8787:5000 siddharth67/node-service:v1`
+`docker run -p 8787:5000 theeraphonp/node-service:v1`
 
 `curl localhost:8787/plusone/99`
  
 ## NodeJS Microservice - Kubernetes Deployment -
-`kubectl create deploy node-app --image siddharth67/node-service:v1`
+`kubectl create deploy node-app --image theeraphonp/node-service:v1`
 
 `kubectl expose deploy node-app --name node-service --port 5000 --type ClusterIP`
 
