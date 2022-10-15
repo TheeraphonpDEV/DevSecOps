@@ -1,6 +1,6 @@
 ## DevSecOps
 
-jenkins URL
+jenkins pipeline URL
 
 http://devsecops-pro.eastus.cloudapp.azure.com/8080
 
