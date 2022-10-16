@@ -10,6 +10,11 @@ pipeline {
       }
     }
 
+    stage('Unit Tests - JUnit and JaCoCo') {
+      steps {
+        sh "mvn test"
+      }
+    }
 
     stage('Mutation Tests - PIT') {
       steps {
@@ -56,6 +61,8 @@ pipeline {
         }
       }
     } 
+    }
+
     post {
       always {
         junit 'target/surefire-reports/*.xml'
@@ -64,7 +71,8 @@ pipeline {
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
       }
 
+    // success {
 
-      // success {
+    // }
 
-      // }
+    // failure {
