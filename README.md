@@ -18,12 +18,12 @@ http://devsecops-pro.eastus.cloudapp.azure.com/8080
 `curl node-service-ip:5000/plusone/99`
 
 ## DevSecOps Pipeline Tool lists -
--Kubernetes
--Docker 
--Azure 
--Jenkins
--SonarQube
--Mutation Test
--Dependency Check
--Trivy (free source for vulnerabilities scanning)
+- Kubernetes
+- Docker 
+- Azure 
+- Jenkins
+- SonarQube
+- Mutation Test
+- Dependency Check
+- Trivy (free source for vulnerabilities scanning)
 
