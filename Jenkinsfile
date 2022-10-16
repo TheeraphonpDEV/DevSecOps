@@ -32,6 +32,7 @@ pipeline {
         }
       }
     }
+  }
 
     stage('SonarQube - SAST') {
       steps {
@@ -43,7 +44,7 @@ pipeline {
           }
         }
       }
-    }
+
 
     stage('Docker Build and Push') {
       steps {
@@ -65,5 +66,3 @@ pipeline {
     }
     
   }
-
-}
