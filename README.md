@@ -16,3 +16,15 @@ http://devsecops-pro.eastus.cloudapp.azure.com/8080
 `kubectl expose deploy node-app --name node-service --port 5000 --type ClusterIP`
 
 `curl node-service-ip:5000/plusone/99`
+
+##DevSecOps Pipeline Tool lists
+
+-Kubernetes
+-Docker
+-Azure
+-Jenkins
+-SonarQube
+-Mutation Test
+-Dependency Check
+-Trivy (free source for vulnerabilities scanning)
+
