@@ -19,9 +19,9 @@ http://devsecops-pro.eastus.cloudapp.azure.com/8080
 
 ## DevSecOps Pipeline Tool lists
 
--Kubernetes 
--Docker
--Azure
+-Kubernetes /
+-Docker /
+-Azure /
 -Jenkins
 -SonarQube
 -Mutation Test
