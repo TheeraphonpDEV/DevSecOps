@@ -17,9 +17,9 @@ http://devsecops-pro.eastus.cloudapp.azure.com/8080
 
 `curl node-service-ip:5000/plusone/99`
 
-##DevSecOps Pipeline Tool lists
+## DevSecOps Pipeline Tool lists
 
--Kubernetes
+-Kubernetes 
 -Docker
 -Azure
 -Jenkins
