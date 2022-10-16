@@ -1,69 +1,18 @@
-pipeline {
-  agent any
+## DevSecOps
 
-  stages {
+jenkins pipeline URL
 
-    stage('Build Artifact - Maven') {
-      steps {
-        sh "mvn clean package -DskipTests=true"
-        archive 'target/*.jar'
-      }
-    }
+http://devsecops-pro.eastus.cloudapp.azure.com/8080
 
-    stage('Unit Tests - JUnit and JaCoCo') {
-      steps {
-        sh "mvn test"
-      }
-      post {
-        always {
-          junit 'target/surefire-reports/*.xml'
-          jacoco execPattern: 'target/jacoco.exec'
-        }
-      }
-    }
 
-    stage('Mutation Tests - PIT') {
-      steps {
-        sh "mvn org.pitest:pitest-maven:mutationCoverage"
-      }
-      post {
-        always {
-          pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
-        }
-      }
-    }
+## NodeJS Microservice - Docker Image -
+`docker run -p 8787:5000 theeraphonp/node-service:v1`
 
-    stage('SonarQube - SAST') {
-      steps {
-        sh "mvn sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://devsecops-pro.eastus.cloudapp.azure.com:9000 -Dsonar.login=94791e2746648bbde8eb596fa740332105d56d14"
-      }
-      timeout(time: 2, unit: 'MINUTES') {
-          script {
-            waitForQualityGate abortPipeline: true
-          }
-        }
-      }
-    }
+`curl localhost:8787/plusone/99`
+ 
+## NodeJS Microservice - Kubernetes Deployment -
+`kubectl create deploy node-app --image theeraphonp/node-service:v1`
 
-    stage('Docker Build and Push') {
-      steps {
-        withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
-          sh 'printenv'
-          sh 'docker build -t theeraphonp/numeric-app:""$GIT_COMMIT"" .'
-          sh 'docker push theeraphonp/numeric-app:""$GIT_COMMIT""'
-        }
-      }
-    }
+`kubectl expose deploy node-app --name node-service --port 5000 --type ClusterIP`
 
-    stage('Kubernetes Deployment - DEV') {
-      steps {
-        withKubeConfig([credentialsId: 'kubeconfig']) {
-          sh "sed -i 's#replace#theeraphonp/numeric-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
-          sh "kubectl apply -f k8s_deployment_service.yaml"
-        }
-      }
-    }
-    
-  }
-
-}
+`curl node-service-ip:5000/plusone/99`
