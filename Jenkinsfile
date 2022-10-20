@@ -37,12 +37,6 @@ pipeline {
     }
   }
 
-   //    stage('Vulnerability Scan - Docker ') {
-    //      steps {
-    //         sh "mvn dependency-check:check"   
-    //        }
-    // }
-
     stage('Vulnerability Scan - Docker') {
       steps {
           "Dependency Scan": {
@@ -61,13 +55,7 @@ pipeline {
         }
       }
     }
-
-    stage('Vulnerability Scan - Kubernetes') {
-      steps {
-        sh 'docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy opa-k8s-security.rego k8s_deployment_service.yaml'
-      }
-    }
-
+    
     stage('Kubernetes Deployment - DEV') {
       steps {
         withKubeConfig([credentialsId: 'kubeconfig']) {
@@ -85,13 +73,6 @@ pipeline {
         pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
       }
-
-    // success {
-
-    // }
-
-    // failure {
-
   }
 
 }
