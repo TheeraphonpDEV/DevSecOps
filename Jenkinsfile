@@ -25,17 +25,17 @@ pipeline {
     stage('SonarQube - SAST') {
       steps {
         withSonarQubeEnv('SonarQube') {
-        sh "mvn sonar:sonar \
-           -Dsonar.projectKey=numeric-application \
-           -Dsonar.host.url=http://devsecops-pro.eastus.cloudapp.azure.com:9000"
-      }
-      timeout(time: 2, unit: 'MINUTES') {
+          sh "mvn sonar:sonar \
+                  -Dsonar.projectKey=numeric-application \
+                  -Dsonar.host.url=http://devsecops-pro.eastus.cloudapp.azure.com:9000"
+        }
+        timeout(time: 2, unit: 'MINUTES') {
           script {
             waitForQualityGate abortPipeline: true
           }
         }
+      }
     }
-  }
 
     stage('Vulnerability Scan - Docker ') {
       steps {
@@ -70,7 +70,15 @@ pipeline {
         jacoco execPattern: 'target/jacoco.exec'
         pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-      }
+ }
+
+    // success {
+
+    // }
+
+    // failure {
+
+    // }
   }
 
 }
