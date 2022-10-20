@@ -37,13 +37,11 @@ pipeline {
     }
   }
 
-    stage('Vulnerability Scan - Docker') {
+    stage('Vulnerability Scan - Docker ') {
       steps {
-          "Dependency Scan": {
-            sh "mvn dependency-check:check"
-          }   
-          }
+        sh "mvn dependency-check:check"
       }
+    }
   
 
     stage('Docker Build and Push') {
@@ -55,7 +53,7 @@ pipeline {
         }
       }
     }
-    
+
     stage('Kubernetes Deployment - DEV') {
       steps {
         withKubeConfig([credentialsId: 'kubeconfig']) {
