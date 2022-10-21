@@ -49,7 +49,7 @@ pipeline {
         )
       }
     }
-  
+  // 1
 
     stage('Docker Build and Push') {
       steps {
