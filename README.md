@@ -26,4 +26,7 @@ http://devsecops-pro.eastus.cloudapp.azure.com/8080
 - Mutation Test
 - Dependency Check
 - Trivy (free source for vulnerabilities scanning)
+- OPA conftest (IaC files statical scanning)
+- Kubesec
+- ZAP (VA open source)
 
